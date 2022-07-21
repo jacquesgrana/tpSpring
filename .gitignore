@@ -10,3 +10,7 @@ target/
 *.iml
 *.ipr
 
+# Maven
+log/
+target/
+
