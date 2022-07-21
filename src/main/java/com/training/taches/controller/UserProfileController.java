@@ -7,18 +7,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @RestController
 @RequestMapping(path = "user", produces = MediaType.APPLICATION_JSON_VALUE)
-public class ControllerUserProfile {
+public class UserProfileController {
 
     UserProfileService userProfileService = new UserProfileService();
     @RequestMapping(path="all", method = RequestMethod.GET)
     public List<UserProfile> gatAll() {
         List<UserProfile> users = userProfileService.search();
-
         return users;
     }
 }
