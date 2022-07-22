@@ -4,7 +4,6 @@ import com.training.taches.entity.UserProfile;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 public class UserProfileService {
 
@@ -43,6 +42,15 @@ public class UserProfileService {
         }
         if(null != userToDelete) {
             users.remove(userToDelete);
+        }
+    }
+
+    public void updateUser(UserProfile newUser, String id) {
+        for (UserProfile user : users) {
+            if(user.getId().equals(id)) {
+                user.setFirstName(newUser.getFirstName());
+                user.setLastName(newUser.getLastName());
+            }
         }
     }
 }

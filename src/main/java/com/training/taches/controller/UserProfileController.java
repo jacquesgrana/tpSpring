@@ -6,7 +6,6 @@ import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping(path = "user", produces = MediaType.APPLICATION_JSON_VALUE)
@@ -33,5 +32,10 @@ public class UserProfileController {
     @DeleteMapping(path = "{id}")
     public void deleteUSer(@PathVariable String id) {
         userProfileService.deleteUser(id);
+    }
+
+    @PutMapping(path = "{id}")
+    public void updateUser(@RequestBody UserProfile user, @PathVariable String id) {
+        userProfileService.updateUser(user, id);
     }
 }
