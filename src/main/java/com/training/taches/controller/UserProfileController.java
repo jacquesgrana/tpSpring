@@ -29,4 +29,9 @@ public class UserProfileController {
         UserProfile user = userProfileService.getOne(id);
         return user;
     }
+
+    @DeleteMapping(path = "{id}")
+    public void deleteUSer(@PathVariable String id) {
+        userProfileService.deleteUser(id);
+    }
 }

@@ -33,4 +33,16 @@ public class UserProfileService {
     public void addOne(UserProfile user) {
         this.users.add(user);
     }
+
+    public void deleteUser(String id) {
+        UserProfile userToDelete = null;
+        for (UserProfile user : users) {
+            if(user.getId().equals(id)) {
+                userToDelete = user;
+            }
+        }
+        if(null != userToDelete) {
+            users.remove(userToDelete);
+        }
+    }
 }
