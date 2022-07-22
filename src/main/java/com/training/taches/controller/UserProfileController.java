@@ -22,29 +22,60 @@ public class UserProfileController {
     IUserProfileService womenProfileService;
 
     @RequestMapping(path="all", method = RequestMethod.GET)
-    public List<UserProfile> getAll() {
-        List<UserProfile> users = menProfileService.search();
-        return users;
+    public List<UserProfile> getAll(@RequestParam String civility) {
+        if (civility.equals("M.")) {
+            List<UserProfile> users = menProfileService.search();
+            return users;
+        }
+        else {
+            List<UserProfile> users = womenProfileService.search();
+            return users;
+        }
+
     }
 
     @PostMapping
-    public void addUser(@RequestBody UserProfile user) {
-        menProfileService.addOne(user);
+    public void addUser(@RequestBody UserProfile user, @RequestParam String civility) {
+        if (civility.equals("M.")) {
+            menProfileService.addOne(user);
+        }
+        else {
+            womenProfileService.addOne(user);
+        }
     }
 
     @RequestMapping(path = "{id}", method = RequestMethod.GET)
-    public UserProfile findOne(@PathVariable String id) {
-        UserProfile user = menProfileService.getOne(id);
+    public UserProfile findOne(@PathVariable String id, @RequestParam String civility) {
+        UserProfile user;
+        if (civility.equals("M.")) {
+            user = menProfileService.getOne(id);
+        }
+        else {
+            user = womenProfileService.getOne(id);
+        }
+
         return user;
     }
 
     @DeleteMapping(path = "{id}")
-    public void deleteUSer(@PathVariable String id) {
-        menProfileService.deleteUser(id);
+    public void deleteUSer(@PathVariable String id, @RequestParam String civility) {
+        if (civility.equals("M.")) {
+            menProfileService.deleteUser(id);
+        }
+        else {
+            womenProfileService.deleteUser(id);
+        }
+
     }
 
     @PutMapping(path = "{id}")
-    public void updateUser(@RequestBody UserProfile user, @PathVariable String id) {
-        menProfileService.updateUser(user, id);
+    public void updateUser(@RequestBody UserProfile user, @PathVariable String id, @RequestParam String civility) {
+        if (civility.equals("M.")) {
+            menProfileService.updateUser(user, id);
+        }
+        else {
+            womenProfileService.updateUser(user, id);
+        }
+
     }
 }
