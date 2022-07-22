@@ -1,22 +1,22 @@
-package com.training.taches.service;
+package com.training.taches.service.impl;
 
 import com.training.taches.entity.UserProfile;
+import com.training.taches.service.IUserProfileService;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class UserProfileService {
+public class MenProfileService implements IUserProfileService {
 
     List<UserProfile> users = new ArrayList<UserProfile>();
     {
-        users.add(new UserProfile("129", "Jean", "Paul"));
-        users.add(new UserProfile("1234", "Marie", "Boulanger"));
-        users.add(new UserProfile("1864", "Angèle", "Deluxe"));
+        users.add(new UserProfile("129", "Jean", "Paul", "M."));
+        users.add(new UserProfile("1864", "Angèlo", "Martino", "M."));
     }
 
-    public UserProfileService() {
+    public MenProfileService() {
     }
 
     public List<UserProfile> search() {

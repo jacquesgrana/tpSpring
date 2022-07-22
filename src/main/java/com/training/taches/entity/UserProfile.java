@@ -6,15 +6,18 @@ public class UserProfile {
     private String firstName;
     private String lastName;
 
+    private String civility;
+
 
 
     public UserProfile() {
     }
 
-    public UserProfile(String id, String firstName, String lastName) {
+    public UserProfile(String id, String firstName, String lastName, String civility) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
+        this.civility = civility;
     }
 
     public String getFirstName() {
@@ -39,5 +42,13 @@ public class UserProfile {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public String getCivility() {
+        return civility;
+    }
+
+    public void setCivility(String civility) {
+        this.civility = civility;
     }
 }
