@@ -16,13 +16,19 @@ import java.util.List;
 public class UserProfileController {
 
     //UserProfileService userProfileService = new UserProfileService();
-    @Autowired
-    @Qualifier("womenProfileService")
+
+    //@Autowired
+    //@Qualifier("womenProfileService")
     IUserProfileService userProfileService;
-/*
-    @Autowired
-    IUserProfileService womenProfileService;
-*/
+
+    public UserProfileController(@Qualifier("womenProfileService") IUserProfileService userProfileService) {
+        this.userProfileService = userProfileService;
+    }
+
+    /*
+        @Autowired
+        IUserProfileService womenProfileService;
+    */
     @RequestMapping(path="all", method = RequestMethod.GET)
     public List<UserProfile> getAll() {
             List<UserProfile> users = userProfileService.search();

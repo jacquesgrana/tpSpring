@@ -19,18 +19,23 @@ public class WomenProfileService implements IUserProfileService {
     public WomenProfileService() {
     }
 
+    @Override
     public List<UserProfile> search() {
         return this.users;
     }
 
+    @Override
     public UserProfile getOne(String id) {
         return users.stream().filter(u -> u.getId().equals(id)).findFirst().orElse(null);
     }
 
+    @Override
     public void addOne(UserProfile user) {
+        user.setCivility("Mme");
         this.users.add(user);
     }
 
+    @Override
     public void deleteUser(String id) {
         UserProfile userToDelete = null;
         for (UserProfile user : users) {
@@ -43,11 +48,13 @@ public class WomenProfileService implements IUserProfileService {
         }
     }
 
+    @Override
     public void updateUser(UserProfile newUser, String id) {
         for (UserProfile user : users) {
             if(user.getId().equals(id)) {
                 user.setFirstName(newUser.getFirstName());
                 user.setLastName(newUser.getLastName());
+                user.setCivility("Mme");
             }
         }
     }
