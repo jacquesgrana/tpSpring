@@ -2,6 +2,7 @@ package com.training.taches.controller;
 
 import com.training.taches.entity.UserProfile;
 import com.training.taches.service.UserProfileService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
@@ -11,7 +12,10 @@ import java.util.List;
 @RequestMapping(path = "user", produces = MediaType.APPLICATION_JSON_VALUE)
 public class UserProfileController {
 
-    UserProfileService userProfileService = new UserProfileService();
+    //UserProfileService userProfileService = new UserProfileService();
+    @Autowired
+    UserProfileService userProfileService;
+
     @RequestMapping(path="all", method = RequestMethod.GET)
     public List<UserProfile> getAll() {
         List<UserProfile> users = userProfileService.search();
