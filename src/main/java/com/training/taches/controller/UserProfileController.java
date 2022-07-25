@@ -19,7 +19,7 @@ public class UserProfileController {
 
     //@Autowired
     //@Qualifier("womenProfileService")
-    IUserProfileService userProfileService;
+    private IUserProfileService userProfileService;
 
     public UserProfileController(@Qualifier("womenProfileService") IUserProfileService userProfileService) {
         this.userProfileService = userProfileService;
