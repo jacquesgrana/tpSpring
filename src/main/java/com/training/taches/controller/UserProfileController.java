@@ -2,6 +2,7 @@ package com.training.taches.controller;
 
 import com.training.taches.entity.UserProfile;
 
+import com.training.taches.entity.UtilNotFoundException;
 import com.training.taches.service.IUserProfileService;
 import com.training.taches.service.impl.MenProfileService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,10 +42,15 @@ public class UserProfileController {
     }
 
     @RequestMapping(path = "{id}", method = RequestMethod.GET)
-    public UserProfile findOne(@PathVariable String id) {
+    public UserProfile findOne(@PathVariable("id") String id) throws UtilNotFoundException {
         UserProfile user;
         user = userProfileService.getOne(id);
-        return user;
+        if (user == null) {
+            throw new UtilNotFoundException(id);
+        }
+        else {
+            return user;
+        }
     }
 
     @DeleteMapping(path = "{id}")
