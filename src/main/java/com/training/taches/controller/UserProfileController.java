@@ -54,12 +54,12 @@ public class UserProfileController {
     }
 
     @DeleteMapping(path = "{id}")
-    public void deleteUSer(@PathVariable String id) {
+    public void deleteUSer(@PathVariable("id") String id) {
         userProfileService.deleteUser(id);
     }
 
     @PutMapping(path = "{id}")
-    public void updateUser(@RequestBody UserProfile user, @PathVariable String id) {
+    public void updateUser(@RequestBody UserProfile user, @PathVariable("id") String id) {
         userProfileService.updateUser(user, id);
     }
 }

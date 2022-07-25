@@ -37,15 +37,7 @@ public class WomenProfileService implements IUserProfileService {
 
     @Override
     public void deleteUser(String id) {
-        UserProfile userToDelete = null;
-        for (UserProfile user : users) {
-            if(user.getId().equals(id)) {
-                userToDelete = user;
-            }
-        }
-        if(null != userToDelete) {
-            users.remove(userToDelete);
-        }
+        users.removeIf(u -> u.getId().equals(id));
     }
 
     @Override
