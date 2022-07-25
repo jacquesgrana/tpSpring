@@ -1,6 +1,8 @@
 package com.training.taches.service;
 
 import com.training.taches.entity.UserProfile;
+import com.training.taches.exception.ApplicationEntityNotFoundException;
+import org.springframework.context.ApplicationContextException;
 
 import java.io.IOException;
 import java.util.List;
@@ -10,7 +12,7 @@ public interface IUserProfileService {
 
     void addOne(UserProfile user);
 
-    UserProfile getOne(String id) throws IOException;
+    UserProfile getOne(String id) throws ApplicationContextException, ApplicationEntityNotFoundException;
 
     void deleteUser(String id);
 

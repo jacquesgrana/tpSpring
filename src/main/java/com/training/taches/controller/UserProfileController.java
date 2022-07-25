@@ -2,7 +2,7 @@ package com.training.taches.controller;
 
 import com.training.taches.entity.UserProfile;
 
-import com.training.taches.exception.UtilNotFoundException;
+import com.training.taches.exception.ApplicationEntityNotFoundException;
 import com.training.taches.service.IUserProfileService;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.MediaType;
@@ -41,7 +41,7 @@ public class UserProfileController {
     }
 
     @RequestMapping(path = "{id}", method = RequestMethod.GET)
-    public UserProfile findOne(@PathVariable("id") String id) throws UtilNotFoundException, IOException {
+    public UserProfile findOne(@PathVariable("id") String id) throws ApplicationEntityNotFoundException {
         UserProfile user;
         user = userProfileService.getOne(id);
         return user;

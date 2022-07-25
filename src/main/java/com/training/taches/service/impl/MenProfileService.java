@@ -1,8 +1,9 @@
 package com.training.taches.service.impl;
 
 import com.training.taches.entity.UserProfile;
-import com.training.taches.exception.UtilNotFoundException;
+import com.training.taches.exception.ApplicationEntityNotFoundException;
 import com.training.taches.service.IUserProfileService;
+import org.springframework.context.ApplicationContextException;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
@@ -27,8 +28,9 @@ public class MenProfileService implements IUserProfileService {
     }
 
     @Override
-    public UserProfile getOne(String id) throws IOException {
-        return users.stream().filter(u -> u.getId().equals(id)).findFirst().orElse(null); //throw new IOException()
+    public UserProfile getOne(String id) throws ApplicationEntityNotFoundException {
+        //return users.stream().filter(u -> u.getId().equals(id)).findFirst().orElseThrow(IOException::new);
+        return users.stream().filter(u -> u.getId().equals(id)).findFirst().orElseThrow(() -> new ApplicationEntityNotFoundException(id));//throw new IOException()
     }
 
     @Override
@@ -44,6 +46,7 @@ public class MenProfileService implements IUserProfileService {
 
     @Override
     public void updateUser(UserProfile newUser, String id) {
+      // users.stream().filter(u -> u.getId().equals(id)).findFirst().(()u -> {u.setFirstName(newUser.getFirstName()); u.setLastName(newUser.getFirstName());});
         for (UserProfile user : users) {
             if(user.getId().equals(id)) {
                 user.setFirstName(newUser.getFirstName());

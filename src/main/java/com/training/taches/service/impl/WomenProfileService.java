@@ -1,7 +1,9 @@
 package com.training.taches.service.impl;
 
 import com.training.taches.entity.UserProfile;
+import com.training.taches.exception.ApplicationEntityNotFoundException;
 import com.training.taches.service.IUserProfileService;
+import org.springframework.context.ApplicationContextException;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
@@ -26,8 +28,9 @@ public class WomenProfileService implements IUserProfileService {
     }
 
     @Override
-    public UserProfile getOne(String id) throws IOException{
-        return users.stream().filter(u -> u.getId().equals(id)).findFirst().orElseThrow(() -> new IOException());
+    public UserProfile getOne(String id) throws ApplicationEntityNotFoundException{
+        //return users.stream().filter(u -> u.getId().equals(id)).findFirst().orElseThrow(() -> new IOException());
+        return users.stream().filter(u -> u.getId().equals(id)).findFirst().orElseThrow(() -> new ApplicationEntityNotFoundException(id));
     }
 
     @Override

@@ -1,17 +1,15 @@
-package com.training.taches.exception;
+package com.training.taches.dto;
 
-import java.io.IOException;
-
-public class ErrorObject {
+public class ErrorDTO {
 
     private String requestURI;
     private String raison;
-    public ErrorObject(String requestURI, String raison) {
+    public ErrorDTO(String requestURI, String raison) {
         this.requestURI = requestURI;
         this.raison = raison;
     }
 
-    public ErrorObject() {
+    public ErrorDTO() {
     }
 
     public String getRequestURI() {
