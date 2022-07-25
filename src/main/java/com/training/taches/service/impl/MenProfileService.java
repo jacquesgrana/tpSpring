@@ -38,14 +38,17 @@ public class MenProfileService implements IUserProfileService {
     @Override
     public void deleteUser(String id) {
         UserProfile userToDelete = null;
+        /*
         for (UserProfile user : users) {
             if(user.getId().equals(id)) {
                 userToDelete = user;
             }
-        }
+        }*/
+        users.removeIf(u -> u.getId().equals(id));
+        /*
         if(null != userToDelete) {
             users.remove(userToDelete);
-        }
+        }*/
     }
 
     @Override
