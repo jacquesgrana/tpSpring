@@ -4,6 +4,7 @@ import com.training.taches.entity.UserProfile;
 import com.training.taches.service.IUserProfileService;
 import org.springframework.stereotype.Service;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,13 +21,13 @@ public class WomenProfileService implements IUserProfileService {
     }
 
     @Override
-    public List<UserProfile> search() {
+    public List<UserProfile> getAll() {
         return this.users;
     }
 
     @Override
-    public UserProfile getOne(String id) {
-        return users.stream().filter(u -> u.getId().equals(id)).findFirst().orElse(null);
+    public UserProfile getOne(String id) throws IOException{
+        return users.stream().filter(u -> u.getId().equals(id)).findFirst().orElseThrow(() -> new IOException());
     }
 
     @Override

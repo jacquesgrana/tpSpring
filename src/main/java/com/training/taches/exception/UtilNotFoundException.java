@@ -1,4 +1,4 @@
-package com.training.taches.entity;
+package com.training.taches.exception;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
