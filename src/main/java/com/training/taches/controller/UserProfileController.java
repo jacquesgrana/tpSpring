@@ -1,5 +1,6 @@
 package com.training.taches.controller;
 
+import com.training.taches.dao.UserProfileDao;
 import com.training.taches.entity.UserProfile;
 
 import com.training.taches.exception.ApplicationEntityNotFoundException;
@@ -23,6 +24,7 @@ public class UserProfileController {
 
     public UserProfileController(@Qualifier("womenProfileService") IUserProfileService userProfileService) {
         this.userProfileService = userProfileService;
+
     }
 
     /*
