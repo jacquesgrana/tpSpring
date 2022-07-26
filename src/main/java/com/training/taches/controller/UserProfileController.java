@@ -1,15 +1,14 @@
 package com.training.taches.controller;
 
-import com.training.taches.dao.UserProfileDao;
 import com.training.taches.entity.UserProfile;
 
 import com.training.taches.exception.ApplicationEntityNotFoundException;
 import com.training.taches.service.IUserProfileService;
-import org.springframework.beans.factory.annotation.Qualifier;
+import com.training.taches.service.impl.MenProfileService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
-import java.io.IOException;
 import java.util.List;
 
 @RestController
@@ -20,9 +19,12 @@ public class UserProfileController {
 
     //@Autowired
     //@Qualifier("womenProfileService")
-    private IUserProfileService userProfileService;
+    @Autowired
+    private MenProfileService userProfileService;
 
-    public UserProfileController(@Qualifier("womenProfileService") IUserProfileService userProfileService) {
+
+
+    public UserProfileController(MenProfileService userProfileService) {
         this.userProfileService = userProfileService;
 
     }
@@ -31,38 +33,33 @@ public class UserProfileController {
         @Autowired
         IUserProfileService womenProfileService;
     */
+
     @RequestMapping(path="all", method = RequestMethod.GET)
     public List<UserProfile> getAll() {
             List<UserProfile> users = userProfileService.getAll();
             return users;
     }
-
+/*
     @PostMapping
     public void addUser(@RequestBody UserProfile user) {
         userProfileService.addOne(user);
-    }
+    }*/
 
     @RequestMapping(path = "{id}", method = RequestMethod.GET)
-    public UserProfile findOne(@PathVariable("id") String id) throws ApplicationEntityNotFoundException {
+    public UserProfile findOne(@PathVariable("id") int id) throws ApplicationEntityNotFoundException {
         UserProfile user;
         user = userProfileService.getOne(id);
         return user;
-        /*
-        if (user == null) {
-            throw new UtilNotFoundException(id);
-        }
-        else {
-            return user;
-        }*/
     }
-
+/*
     @DeleteMapping(path = "{id}")
-    public void deleteUSer(@PathVariable("id") String id) {
+    public void deleteUSer(@PathVariable("id") int id) {
         userProfileService.deleteUser(id);
     }
-
+*/
+    /*
     @PutMapping(path = "{id}")
-    public void updateUser(@RequestBody UserProfile user, @PathVariable("id") String id) {
+    public void updateUser(@RequestBody UserProfile user, @PathVariable("id") int id) {
         userProfileService.updateUser(user, id);
-    }
+    }*/
 }

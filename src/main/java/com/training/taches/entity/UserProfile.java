@@ -8,7 +8,7 @@ public class UserProfile {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private String id;
+    private int id;
 
     @Column(name = "first_name", nullable = false, length = 100)
     private String firstName;
@@ -24,7 +24,13 @@ public class UserProfile {
     public UserProfile() {
     }
 
-    public UserProfile(String id, String firstName, String lastName, String civility) {
+    public UserProfile(String firstName, String lastName, String civility) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.civility = civility;
+    }
+
+    public UserProfile(int id, String firstName, String lastName, String civility) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -47,11 +53,11 @@ public class UserProfile {
         this.lastName = lastName;
     }
 
-    public String getId() {
+    public int getId() {
         return this.id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 
