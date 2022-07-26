@@ -36,22 +36,18 @@ public class MenProfileService implements IUserProfileService { //implements IUs
 
     @Override
     public UserProfile getOne(int id) throws ApplicationEntityNotFoundException {
-        //return users.stream().filter(u -> u.getId().equals(id)).findFirst().orElseThrow(IOException::new);
-        //return users.stream().filter(u -> u.getId().equals(id)).findFirst().orElseThrow(() -> new ApplicationEntityNotFoundException(id));//throw new IOException()
         UserProfile user = userProfileDao.findById(id).stream().findFirst().orElseThrow(() -> new ApplicationEntityNotFoundException(Integer.toString(id)));
         return user;
     }
 
     @Override
     public void addOne(UserProfile user) {
-        //user.setCivility("M.");
        userProfileDao.save(user);
     }
 
     @Override
     public void deleteUser(int id) {
         userProfileDao.deleteById(id);
-       // users.removeIf(u -> u.getId().equals(id));
     }
 
     @Override
