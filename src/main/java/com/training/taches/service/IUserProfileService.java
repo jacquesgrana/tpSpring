@@ -10,11 +10,11 @@ import java.util.List;
 public interface IUserProfileService {
     List<UserProfile> getAll();
 
-    //void addOne(UserProfile user);
+    void addOne(UserProfile user);
 
     UserProfile getOne(int id) throws ApplicationEntityNotFoundException;
 
-    //void deleteUser(int id);
+    void deleteUser(int id);
 
-    //void updateUser(UserProfile user, int id);
+    void updateUser(UserProfile user, int id)  throws ApplicationEntityNotFoundException;
 }

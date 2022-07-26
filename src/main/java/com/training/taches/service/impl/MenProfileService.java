@@ -34,7 +34,7 @@ public class MenProfileService implements IUserProfileService { //implements IUs
     }
 
 
-    //@Override
+    @Override
     public UserProfile getOne(int id) throws ApplicationEntityNotFoundException {
         //return users.stream().filter(u -> u.getId().equals(id)).findFirst().orElseThrow(IOException::new);
         //return users.stream().filter(u -> u.getId().equals(id)).findFirst().orElseThrow(() -> new ApplicationEntityNotFoundException(id));//throw new IOException()
@@ -42,28 +42,24 @@ public class MenProfileService implements IUserProfileService { //implements IUs
         return user;
     }
 
-    //@Override
+    @Override
     public void addOne(UserProfile user) {
         //user.setCivility("M.");
-        //this.users.add(user);
+       userProfileDao.save(user);
     }
 
-    //@Override
-    public void deleteUser(String id) {
+    @Override
+    public void deleteUser(int id) {
+        userProfileDao.deleteById(id);
        // users.removeIf(u -> u.getId().equals(id));
     }
-/*
-    //@Override
-    public void updateUser(UserProfile newUser, int id) {
-        List<UserProfile> users = new ArrayList<UserProfile>();
-      // users.stream().filter(u -> u.getId().equals(id)).findFirst().(()u -> {u.setFirstName(newUser.getFirstName()); u.setLastName(newUser.getFirstName());});
 
-        for (UserProfile user : users) {
-            if(user.getId() == id) {
-                user.setFirstName(newUser.getFirstName());
-                user.setLastName(newUser.getLastName());
-                user.setCivility("M.");
-            }
-        }
-    }*/
+    @Override
+    public void updateUser(UserProfile newUser, int id) throws ApplicationEntityNotFoundException {
+        UserProfile user = userProfileDao.findById(id).stream().findFirst().orElseThrow(() -> new ApplicationEntityNotFoundException(Integer.toString(id)));
+        user.setFirstName(newUser.getFirstName());
+        user.setLastName(newUser.getLastName());
+        user.setCivility(newUser.getCivility());
+        userProfileDao.save(user);
+    }
 }
